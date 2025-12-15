@@ -3,34 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JakkoDevUK | Indie Game Developer</title>
+    <title>JakkoDevUK | Indie Dev</title>
 
-    <!-- 1. FAVICON -->
+    <!-- ASSETS -->
     <link rel="icon" type="image/png" href="JakkoDevSimple.png">
-
-    <!-- 2. SOCIAL SHARE IMAGE -->
     <meta property="og:image" content="MainBanner.png">
-    <meta property="og:title" content="JakkoDevUK - Solo Indie Dev">
-    <meta property="og:description" content="Building games from scratch. Follow the development journey.">
-    <meta name="twitter:card" content="summary_large_image">
 
-    <!-- Google Fonts -->
+    <!-- Fonts (Techy but readable) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-orange: #FF6600;
-            --bg-dark: #121212;
-            --bg-panel: #1A1A1A;
-            --text-white: #FFFFFF;
-            --text-grey: #B0B0B0;
-            --font-main: 'Montserrat', sans-serif;
-            --font-code: 'Fira Code', monospace;
+            --orange: #FF6600;
+            --bg: #0d0d0d;
+            --panel: #141414;
+            --text: #e0e0e0;
+            --dim: #777;
+            --border: #222;
         }
 
         * {
@@ -40,351 +34,198 @@
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-white);
-            font-family: var(--font-main);
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            overflow-x: hidden;
+            /* Subtle grid pattern */
+            background-image: radial-gradient(#222 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
         a {
             text-decoration: none;
             color: inherit;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         img {
-            max-width: 100%;
             display: block;
+            max-width: 100%;
+        }
+
+        /* --- LAYOUT --- */
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 60px 0 40px;
+            text-align: center;
+        }
+
+        .logo-img {
+            height: 60px;
+            margin: 0 auto 20px;
+        }
+
+        /* --- BANNER --- */
+        .banner-container {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        /* --- TEXT STYLES --- */
+        h1, h2, h3 {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            font-size: 1.5rem;
         }
 
         p {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            color: #ccc;
         }
 
-        /* --- NAVIGATION --- */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            background: rgba(18, 18, 18, 0.95);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .nav-logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-            .nav-links a {
-                font-size: 0.9rem;
-                font-weight: 600;
-                color: var(--text-grey);
-                text-transform: uppercase;
-            }
-
-                .nav-links a:hover {
-                    color: var(--primary-orange);
-                }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            width: 100%;
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding-top: 80px;
-            position: relative;
-        }
-
-        .hero-banner-img {
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 1px solid rgba(255, 102, 0, 0.2); /* Subtle orange border */
-        }
-
-        .hero-container {
-            width: 90%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 30px;
-        }
-
-        .cta-button {
-            padding: 15px 40px;
-            background: transparent;
-            border: 2px solid var(--primary-orange);
-            color: var(--primary-orange);
-            font-family: var(--font-code);
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 4px;
-            font-size: 1.1rem;
-            cursor: pointer;
-        }
-
-            .cta-button:hover {
-                background: var(--primary-orange);
-                color: #000;
-                box-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
-            }
-
-        /* --- SECTIONS --- */
-        section {
-            padding: 80px 5%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-            .section-title::before {
-                content: '#';
-                color: var(--primary-orange);
-                font-family: var(--font-code);
-            }
-
-        /* --- ABOUT (Split Layout) --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
-
-        .bio-text {
-            font-size: 1.1rem;
-            color: #ddd;
-        }
-
-            .bio-text strong {
-                color: var(--primary-orange);
-            }
-
-        .about-image-container {
-            display: flex;
-            justify-content: center;
-            position: relative;
-        }
-            /* Using Simple Logo as a "sticker" on the about section */
-            .about-image-container img {
-                width: 250px;
-                opacity: 0.8;
-                filter: drop-shadow(0 0 10px rgba(255, 102, 0, 0.2));
-            }
-
-        /* --- STATUS / TECH STACK --- */
-        .status-box {
-            background: var(--bg-panel);
-            border-left: 4px solid var(--primary-orange);
-            padding: 30px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 50px;
-        }
-
-        .status-header {
-            font-family: var(--font-code);
-            color: var(--primary-orange);
+        .highlight {
+            color: var(--orange);
             font-weight: bold;
-            margin-bottom: 10px;
-            display: block;
         }
 
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .tech-item {
-            background: #252525;
-            padding: 15px;
-            text-align: center;
+        /* --- LINKS --- */
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--panel);
+            padding: 10px 20px;
             border-radius: 6px;
-            font-family: var(--font-code);
+            border: 1px solid var(--border);
+            margin-right: 10px;
+            margin-bottom: 10px;
             font-size: 0.9rem;
-            border: 1px solid transparent;
-            transition: 0.3s;
+            font-weight: 600;
         }
 
-            .tech-item:hover {
-                border-color: var(--primary-orange);
-                color: var(--primary-orange);
+            .social-link:hover {
+                border-color: var(--orange);
+                color: var(--orange);
             }
+
+        /* --- "CONSOLE" BOX --- */
+        .terminal {
+            background: #000;
+            border: 1px solid #333;
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: #aaa;
+            margin: 30px 0;
+        }
+
+        .cmd {
+            color: var(--orange);
+        }
+
+        .out {
+            display: block;
+            margin-bottom: 5px;
+        }
 
         /* --- FOOTER --- */
         footer {
-            background: #000;
-            padding: 60px 5%;
+            margin-top: 80px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
+            font-size: 0.8rem;
+            color: var(--dim);
         }
 
-        .footer-logo {
-            width: 180px;
-            margin-bottom: 10px;
-        }
-
-        .social-icons a {
-            font-size: 1.5rem;
-            color: var(--text-grey);
-            margin: 0 15px;
-        }
-
-            .social-icons a:hover {
-                color: var(--primary-orange);
-            }
-
-        /* Mobile Fixes */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero {
-                min-height: 60vh;
+        /* Mobile Tweaks */
+        @media(max-width: 600px) {
+            .wrapper {
+                padding: 15px;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <div class="nav-logo">
-            <a href="#"><img src="JakkoDevSimple.png" alt="JakkoDevUK Logo"></a>
-        </div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#status">Status</a>
-            <a href="#contact">Connect</a>
-        </div>
-    </nav>
+    <div class="wrapper">
 
-    <!-- HERO SECTION -->
-    <header class="hero">
-        <div class="hero-container">
-            <!-- ALTERNATE BANNER (Name + Tagline) -->
-            <img src="AlternateBanner.png" alt="JakkoDevUK - Your Imagination. Compiled." class="hero-banner-img">
-
-            <a href="#contact" class="cta-button">Follow The Journey</a>
-        </div>
-    </header>
-
-    <!-- ABOUT SECTION -->
-    <section id="about">
-        <div class="about-grid">
-            <div class="about-image-container">
-                <!-- Using the Simple Logo to reinforce personal branding -->
-                <img src="JakkoDevSimple.png" alt="Jakko Personal Logo">
+        <!-- HEADER -->
+        <header>
+            <img src="JakkoDevSimple.png" alt="JD" class="logo-img">
+            <!-- Using the alternate banner as the main hero image -->
+            <div class="banner-container">
+                <img src="AlternateBanner.png" alt="JakkoDevUK">
             </div>
-            <div class="bio-text">
-                <h2 class="section-title">Hi, I'm Jakko.</h2>
-                <p>
-                    I'm a solo indie developer based in the UK. <strong>JakkoDevUK</strong> is my personal playground for code, creativity, and chaos.
-                </p>
-                <p>
-                    I don't have a massive team or a AAA budget. What I do have is a keyboard, coffee, and a drive to build systems from scratch. I'm currently focused on learning the depths of game engines and documenting the process.
-                </p>
-                <p style="font-family: var(--font-code); font-size: 0.9rem; color: var(--primary-orange);">
-                    > Status: Building. Learning. Iterating.
-                </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- STATUS & TECH SECTION (Replaces "Projects") -->
-    <section id="status">
-        <h2 class="section-title">In The Lab</h2>
-
-        <!-- Current Status Box -->
-        <div class="status-box">
-            <span class="status-header">// CURRENT OBJECTIVE</span>
-            <h3>Prototyping Phase 1</h3>
-            <p style="color: #bbb;">
-                I am currently working on my first major prototype. No public builds are available yet, but I am laying the foundation for a 2D mechanics-driven system.
+            <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                Indie game dev. Learning by doing. Breaking things often.
             </p>
-            <p style="color: #bbb;">
-                Follow me on X (Twitter) for devlogs and screenshots as they happen.
+
+            <div style="margin-top: 25px;">
+                <a href="https://x.com/JakkoDevUK" class="social-link"><i class="fab fa-twitter"></i> Twitter/X</a>
+                <a href="https://github.com/JakkoDevUK" class="social-link"><i class="fab fa-github"></i> GitHub</a>
+                <a href="mailto:jakkodevuk@gmail.com" class="social-link"><i class="fas fa-envelope"></i> Email</a>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+
+        <h2>The Website</h2>
+        <p>
+            Changed my online name because my old one sounded weird. For now, it's just me sitting at a desk, drinking too much caffeine, and trying to figure out why my colliders aren't working.
+        </p>
+        <p>
+            I made this site to dump my progress, maybe show off, and prove that I'm actually working on stuff instead of just playing games all day.
+        </p>
+
+        <!-- TERMINAL BIT -->
+        <div class="terminal">
+            <span class="out"><span class="cmd">jakko@dev:~$</span> whoami</span>
+            <span class="out">> Solo developer from the UK.</span>
+            <br>
+            <span class="out"><span class="cmd">jakko@dev:~$</span> cat current_focus.txt</span>
+            <span class="out">> Learning C#.</span>
+            <span class="out">> 2D Platformer movement system.</span>
+            <span class="out">> Developing problem solving.</span>
+        </div>
+
+        <h2>What I'm working on</h2>
+        <p>
+            No full releases yet. I'd rather work on base skills than try and push out something bad.
+        </p>
+
+        <div style="background: var(--panel); padding: 20px; border-radius: 8px; border-left: 3px solid var(--orange);">
+            <h3 style="margin-bottom: 10px;">🚧 Prototype_01</h3>
+            <p style="margin-bottom: 0; font-size: 0.95rem;">
+                Working on a new project right now...
             </p>
         </div>
 
-        <!-- Tech Stack -->
-        <h3 style="font-family: var(--font-main); text-transform: uppercase;">My Toolbelt</h3>
-        <div class="tech-grid">
-            <div class="tech-item"><i class="fa-brands fa-unity"></i> Unity</div>
-            <div class="tech-item"><i class="fa-solid fa-code"></i> C#</div>
-            <div class="tech-item"><i class="fa-solid fa-cube"></i> Blender</div>
-            <div class="tech-item"><i class="fa-brands fa-github"></i> Git</div>
-            <div class="tech-item"><i class="fa-solid fa-layer-group"></i> Aseprite</div>
-        </div>
-    </section>
+        <!-- FOOTER -->
+        <footer>
+            <img src="JakkoDevFull.png" style="height: 30px; margin: 0 auto 10px; opacity: 0.5;">
+            <p>&copy; 2025 JakkoDevUK.</p>
+        </footer>
 
-    <!-- FOOTER -->
-    <footer id="contact">
-        <!-- FULL LOGO -->
-        <img src="JakkoDevFull.png" alt="JakkoDevUK Full Logo" class="footer-logo">
+    </div>
 
-        <p style="max-width: 600px; color: #888; margin-bottom: 20px;">
-            This is a one-person operation. If you want to chat about dev, collaborate, or just say hi, hit me up on social.
-        </p>
-
-        <div class="social-icons">
-            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
-            <a href="#" title="X / Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" title="Itch.io"><i class="fab fa-itch-io"></i></a>
-            <a href="mailto:contact@jakkodev.uk" title="Email"><i class="fas fa-envelope"></i></a>
-        </div>
-        <p style="color: #444; font-size: 0.8rem; margin-top: 30px;">
-            &copy; 2025 JakkoDevUK. Built Solo.
-        </p>
-    </footer>
-
-    <!-- Smooth Scroll Script -->
-    <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
