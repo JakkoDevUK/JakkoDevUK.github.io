@@ -3,26 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JakkoDevUK</title>
-    <link rel="stylesheet" href="style.css">
+    <title>JakkoDevUK | Game Development Studio</title>
+
+    <!-- 1. FAVICON (Browser Tab Icon) -->
+    <link rel="icon" type="image/png" href="JakkoDevSimple.png">
+
+    <!-- 2. SOCIAL SHARE IMAGE (Discord/Twitter/LinkedIn Preview) -->
+    <meta property="og:image" content="MainBanner.png">
+    <meta property="og:title" content="JakkoDevUK">
+    <meta property="og:description" content="Your Imagination. Compiled.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-orange: #FF6600;
+            --bg-dark: #121212;
+            --bg-panel: #1A1A1A;
+            --text-white: #FFFFFF;
+            --text-grey: #B0B0B0;
+            --font-main: 'Montserrat', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(18, 18, 18, 0.95);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        /* 3. NAV LOGO: Using the Simple Logo here */
+        .nav-logo img {
+            height: 40px; /* Adjust size to fit your nav */
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+            .nav-links a {
+                font-size: 0.9rem;
+                font-weight: 600;
+                color: var(--text-grey);
+                text-transform: uppercase;
+            }
+
+                .nav-links a:hover {
+                    color: var(--primary-orange);
+                }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            /* We remove the background gradient and use the image content instead */
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 80px; /* Space for fixed nav */
+            position: relative;
+        }
+
+        /* 4. HERO BANNER: The main visual */
+        .hero-banner-img {
+            width: 100%;
+            max-width: 1400px; /* Prevents it from getting too huge on 4k screens */
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        /* Container to center the banner */
+        .hero-container {
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .cta-button {
+            padding: 15px 40px;
+            background: transparent;
+            border: 2px solid var(--primary-orange);
+            color: var(--primary-orange);
+            font-family: var(--font-code);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+
+            .cta-button:hover {
+                background: var(--primary-orange);
+                color: #000;
+                box-shadow: 0 0 20px rgba(255, 102, 0, 0.4);
+            }
+
+        /* --- SECTIONS --- */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            border-left: 5px solid var(--primary-orange);
+            padding-left: 15px;
+        }
+
+        /* --- PROJECTS GRID --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--bg-panel);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+            .project-card:hover {
+                transform: translateY(-5px);
+                border-color: var(--primary-orange);
+            }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: #252525;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-grey);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .tech-stack span {
+            color: var(--primary-orange);
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+
+        /* --- ABOUT --- */
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        /* Using the Simple Logo as a giant faint watermark in About section */
+        .watermark-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            opacity: 0.1; /* Very faint */
+        }
+
+            .watermark-container img {
+                width: 200px;
+            }
+
+        /* --- FOOTER --- */
+        footer {
+            background: #000;
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* 5. FOOTER LOGO: Using the Full Logo here */
+        .footer-logo {
+            width: 200px; /* Adjust size based on your PNG */
+            margin-bottom: 10px;
+        }
+
+        .social-icons a {
+            font-size: 1.5rem;
+            color: var(--text-grey);
+            margin: 0 15px;
+        }
+
+            .social-icons a:hover {
+                color: var(--primary-orange);
+            }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-banner-img {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Hi, I’m Austin — JakkoDevUK</h1>
-        <p>Software Developer | Open-source Projects | Portfolio coming soon</p>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <div class="nav-logo">
+            <!-- SIMPLE LOGO -->
+            <a href="#"><img src="JakkoDevSimple.png" alt="JakkoDevUK Logo"></a>
+        </div>
+        <div class="nav-links">
+            <a href="#projects">Work</a>
+            <a href="#about">Studio</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="hero-container">
+            <!-- ALTERNATE BANNER (Name + Tagline) -->
+            <!-- This acts as the main cover image -->
+            <img src="AlternateBanner.png" alt="JakkoDevUK - Your Imagination. Compiled." class="hero-banner-img">
+
+            <!-- Call to Action button below the banner -->
+            <a href="#projects" class="cta-button">Initialize Projects</a>
+        </div>
     </header>
 
-    <section class="links">
-        <h2>Connect with me</h2>
-        <ul>
-            <li><a href="https://github.com/JakkoDevUK" target="_blank">GitHub</a></li>
-            <li><a href="https://www.linkedin.com/in/austingilchristthomas" target="_blank">LinkedIn</a></li>
-            <li><a href="mailto:jakkodevuk@gmail.com">Email</a></li>
-        </ul>
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <h2 class="section-title">Active Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="card-image"><i class="fa-solid fa-gamepad fa-3x"></i></div>
+                <div class="card-content">
+                    <h3>Project Alpha</h3>
+                    <p>High-octane strategy game with real-time multiplayer.</p>
+                    <div class="tech-stack"><span>#Unity</span> <span>#C#</span></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-image"><i class="fa-solid fa-mobile-screen fa-3x"></i></div>
+                <div class="card-content">
+                    <h3>Neon Dash</h3>
+                    <p>Synthwave aesthetic endless runner for mobile.</p>
+                    <div class="tech-stack"><span>#Godot</span> <span>#Android</span></div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="card-image"><i class="fa-solid fa-vr-cardboard fa-3x"></i></div>
+                <div class="card-content">
+                    <h3>Void Walker VR</h3>
+                    <p>Immersive puzzle solving experience for Oculus Quest.</p>
+                    <div class="tech-stack"><span>#Unreal</span> <span>#VR</span></div>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 JakkoDevUK</p>
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="section-title">The Studio</h2>
+        <div class="about-container">
+            <div class="about-text">
+                <p style="margin-bottom: 20px; font-size: 1.1rem; color: #ccc;">
+                    JakkoDevUK is an independent game development studio bridging the gap between abstract creativity and technical precision.
+                </p>
+                <p style="color: #888;">
+                    We specialize in building immersive digital experiences using cutting-edge engines.
+                </p>
+            </div>
+            <!-- Using SIMPLE LOGO as a decorative watermark -->
+            <div class="watermark-container">
+                <img src="JakkoDevSimple.png" alt="JD Icon">
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <!-- FULL LOGO -->
+        <img src="JakkoDevFull.png" alt="JakkoDevUK Full Logo" class="footer-logo">
+
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-itch-io"></i></a>
+            <a href="mailto:contact@jakkodev.uk"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p style="color: #666; font-size: 0.8rem;">
+            &copy; 2025 JakkoDevUK. All Rights Reserved.
+        </p>
     </footer>
+
+    <!-- Smooth Scroll Script -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
